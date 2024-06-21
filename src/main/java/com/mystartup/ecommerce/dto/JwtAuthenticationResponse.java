@@ -4,12 +4,14 @@ public class JwtAuthenticationResponse {
     private String accessToken;
     private String tokenType = "Bearer";
 
+    private Long userId; // Add userId field
+
     private String name;
 
-    public JwtAuthenticationResponse(String accessToken, String name)
-    {
+    public JwtAuthenticationResponse(String accessToken, String name, Long userId) {
         this.accessToken = accessToken;
         this.name = name;
+        this.userId = userId;
     }
 
 
@@ -35,5 +37,13 @@ public class JwtAuthenticationResponse {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

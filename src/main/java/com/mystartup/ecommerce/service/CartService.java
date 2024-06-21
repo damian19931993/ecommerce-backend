@@ -64,5 +64,17 @@ public class CartService {
 
         cartItemRepository.delete(cartItem);
     }
+
+    public void clearCart(Long userId) {
+        Optional<Cart> optionalCart = cartRepository.findByUserId(userId);
+        if (optionalCart.isPresent()) {
+            Cart cart = optionalCart.get();
+            for (CartItem cartItem : cart.getCartItems()) {
+                cartItemRepository.delete(cartItem);
+            }
+            cart.getCartItems().clear();
+            cartRepository.save(cart);
+        }
+    }
 }
 

@@ -1,6 +1,8 @@
 package com.mystartup.ecommerce.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,5 +92,11 @@ public class Cart {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return cartItems.stream()
+                .map(CartItem::getTotalPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

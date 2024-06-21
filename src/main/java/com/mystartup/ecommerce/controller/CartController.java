@@ -2,8 +2,10 @@ package com.mystartup.ecommerce.controller;
 
 import com.mystartup.ecommerce.dto.CartItemRequest;
 import com.mystartup.ecommerce.entity.Cart;
+import com.mystartup.ecommerce.entity.User;
 import com.mystartup.ecommerce.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,5 +30,10 @@ public class CartController {
     @DeleteMapping("/remove/{cartItemId}")
     public void removeFromCart(@PathVariable Long cartItemId) {
         cartService.removeFromCart(cartItemId);
+    }
+
+    @PostMapping("/{userId}/clear")
+    public void clearCart(@PathVariable Long userId, @AuthenticationPrincipal User user) {
+        cartService.clearCart(userId);
     }
 }
