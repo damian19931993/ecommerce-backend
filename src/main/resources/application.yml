@@ -11,6 +11,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
 app:
   jwtSecret: your-secret-key
   jwtExpirationInMs: 604800000
+
+mercadopago:
+  access:
+    token: TEST-7234229240598746-062421-19376539e554a6cddaaa08f64e14f559-139241186
